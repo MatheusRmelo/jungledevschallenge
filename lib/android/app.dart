@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:jungledevs/android/pages/home.dart';
+import 'package:jungledevs/android/pages/movie-details.dart';
+import 'package:jungledevs/android/pages/topmovies.dart';
 import 'package:jungledevs/android/pages/splashscreen.dart';
 
 class AndroidApp extends StatelessWidget {
@@ -21,7 +22,8 @@ class AndroidApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => SplashScreen(),
-        '/home': (context) => HomePage(),
+        '/topmovies': (context) => TopMoviesPage(),
+        '/movie-details': (context) => MovieDetailsPage(),
       },
     );
   }

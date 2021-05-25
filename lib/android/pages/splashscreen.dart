@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void getMovies() async {
     List<GenreModel> genres = await bloc.getGenres();
     List<MovieModel> movies = await bloc.getMovies();
-    Navigator.pushReplacementNamed(context, '/home',
+    Navigator.pushReplacementNamed(context, '/topmovies',
         arguments: {"movies": movies, "genres": genres});
   }
 
