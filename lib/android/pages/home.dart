@@ -10,6 +10,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var bloc = new MoviesBloc();
+  int _selectedIndex = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +56,66 @@ class _HomePageState extends State<HomePage> {
                   stars: bloc.getStars(index),
                 );
               })),
+      bottomNavigationBar: BottomNavigationBar(
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        backgroundColor: Color(0xFF1B1C2A),
+        selectedItemColor: Theme.of(context).primaryColor,
+        unselectedItemColor: Colors.white,
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              "assets/images/home.png",
+              color: Colors.white,
+            ),
+            activeIcon: Image.asset(
+              "assets/images/home.png",
+              color: Theme.of(context).primaryColor,
+            ),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              "assets/images/topmovies.png",
+              color: Colors.white,
+            ),
+            activeIcon: Image.asset(
+              "assets/images/topmovies.png",
+              color: Theme.of(context).primaryColor,
+            ),
+            label: 'Top movies',
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              "assets/images/trailers.png",
+              color: Colors.white,
+            ),
+            activeIcon: Image.asset(
+              "assets/images/trailers.png",
+              color: Theme.of(context).primaryColor,
+            ),
+            label: 'Trailers',
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              "assets/images/statistics.png",
+              color: Colors.white,
+            ),
+            activeIcon: Image.asset(
+              "assets/images/statistics.png",
+              color: Theme.of(context).primaryColor,
+            ),
+            label: 'Statistics',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: (int index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+      ),
     );
   }
 }

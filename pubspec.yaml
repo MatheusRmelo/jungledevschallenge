@@ -49,6 +49,10 @@ flutter:
   assets:
     - assets/images/il_splash.png
     - assets/images/il_goldmedal_small.png
+    - assets/images/home.png
+    - assets/images/topmovies.png
+    - assets/images/trailers.png
+    - assets/images/statistics.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
