@@ -62,7 +62,7 @@ class MoviesBloc {
 
   Future<List<MovieModel>> getMovies() async {
     var result =
-        await _dioMovies.get("popular?api_key=$_apiKey&language=en-US");
+        await _dioMovies.get("top_rated?api_key=$_apiKey&language=en-US");
 
     for (var movieData in result.data["results"]) {
       MovieModel movie = MovieModel(
@@ -73,9 +73,9 @@ class MoviesBloc {
         adult: movieData["adult"],
         backdropPath: movieData["backdrop_path"],
         posterPath: movieData["poster_path"],
-        releaseDate: movieData["releaseDate"],
+        releaseDate: movieData["release_date"],
         popularity: movieData["popularity"],
-        voteAverage: movieData["vote_average"],
+        voteAverage: movieData["vote_average"].toDouble(),
         voteCount: movieData["vote_count"],
       );
       movies.add(movie);
@@ -97,5 +97,21 @@ class MoviesBloc {
     }
 
     return genresNames;
+  }
+
+  String getReleaseYear(int index) {
+    MovieModel movie = movies[index];
+    String releaseYear = movie.releaseDate[0] +
+        movie.releaseDate[1] +
+        movie.releaseDate[2] +
+        movie.releaseDate[3];
+
+    return releaseYear;
+  }
+
+  int getStars(int index) {
+    MovieModel movie = movies[index];
+    int stars = movie.voteAverage ~/ 2;
+    return stars;
   }
 }
