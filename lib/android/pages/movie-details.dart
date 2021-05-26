@@ -85,6 +85,8 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
+
     TextStyle tsTitleMovie =
         TextStyle(fontFamily: "Inter", fontSize: 32, color: Colors.white);
     TextStyle tsParagraph =
@@ -176,9 +178,10 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                             )
                           : Container()),
                   Positioned(
+                      left: 80,
                       top: size.height * 0.2,
                       child: Container(
-                        width: size.width * 0.6,
+                        width: size.width * 0.7,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
