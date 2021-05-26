@@ -4,9 +4,9 @@ import 'package:dio/dio.dart';
 import 'package:jungledevs/models/genre_model.dart';
 import 'package:jungledevs/models/movie_model.dart';
 
-class MoviesBloc {
+class SimilarBloc {
   List<MovieModel> _movies = [];
-  List<MovieModel> get moviesget => _movies;
+  List<MovieModel> get movies => _movies;
   final _dioMovies =
       Dio(BaseOptions(baseUrl: "https://api.themoviedb.org/3/movie/"));
   final _dioGenre =
@@ -17,9 +17,9 @@ class MoviesBloc {
 
   Stream<List<MovieModel>> get myStream => _movieController.stream;
 
-  Future<void> getTopMovies() async {
+  Future<void> getSimilarMovies(int id) async {
     var result =
-        await _dioMovies.get("top_rated?api_key=$_apiKey&language=en-US");
+        await _dioMovies.get("$id/similar?api_key=$_apiKey&language=en-US");
 
     for (var movieData in result.data["results"]) {
       MovieModel movie = MovieModel(
@@ -43,11 +43,6 @@ class MoviesBloc {
   closeStream() {
     _movieController.close();
   }
-
-  List<MovieModel> movies = [];
-  List<GenreModel> genres = [];
-
-  void setMovies(value) => movies = value;
 
   Future<List<GenreModel>> getGenres() async {
     List<GenreModel> genres = [];

@@ -11,14 +11,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void initState() {
     super.initState();
-    getMovies();
-  }
-
-  void getMovies() async {
-    List<GenreModel> genres = await bloc.getGenres();
-    List<MovieModel> movies = await bloc.getMovies();
-    Navigator.pushReplacementNamed(context, '/topmovies',
-        arguments: {"movies": movies, "genres": genres});
+    Future.delayed(Duration.zero, () {
+      Navigator.pushReplacementNamed(context, '/topmovies');
+    });
   }
 
   @override
