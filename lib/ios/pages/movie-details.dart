@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:jungledevs/android/widgets/card_movie.dart';
-import 'package:jungledevs/android/widgets/rating_movie.dart';
+import 'package:jungledevs/ios/widgets/card_movie.dart';
+import 'package:jungledevs/ios/widgets/rating_movie.dart';
 import 'package:jungledevs/blocs/movie.bloc.dart';
 import 'package:jungledevs/blocs/similar.bloc.dart';
 import 'package:jungledevs/models/genre_model.dart';
@@ -53,8 +53,8 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             Shimmer.fromColors(
-              baseColor: Colors.grey[500],
-              highlightColor: Colors.grey[100],
+              baseColor: CupertinoColors.systemGrey2,
+              highlightColor: CupertinoColors.systemGrey5,
               child: Column(
                 children: <int>[0, 1, 3]
                     .map((_) => Padding(
@@ -66,7 +66,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                                   child: Container(
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
-                                    color: Colors.black),
+                                    color: CupertinoColors.black),
                                 width: double.infinity,
                                 height: height,
                               )),
@@ -87,18 +87,18 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([]);
 
-    TextStyle tsTitleMovie =
-        TextStyle(fontFamily: "Inter", fontSize: 32, color: Colors.white);
-    TextStyle tsParagraph =
-        TextStyle(fontFamily: "Inter", fontSize: 14, color: Colors.white);
+    TextStyle tsTitleMovie = TextStyle(
+        fontFamily: "Inter", fontSize: 32, color: CupertinoColors.white);
+    TextStyle tsParagraph = TextStyle(
+        fontFamily: "Inter", fontSize: 14, color: CupertinoColors.white);
     TextStyle tsSmall =
         TextStyle(fontFamily: "Inter", fontSize: 12, color: Color(0xFFCDCED1));
     TextStyle tsSmallSpecial =
         TextStyle(fontFamily: "Inter", fontSize: 14, color: Color(0xFFCDCED1));
     Size size = MediaQuery.of(context).size;
 
-    return Scaffold(
-        body: SingleChildScrollView(
+    return CupertinoPageScaffold(
+        child: SingleChildScrollView(
             child: StreamBuilder<MovieModel>(
       stream: bloc.myStream,
       builder: (context, snapshot) {
@@ -110,9 +110,8 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
               height: size.height,
               width: size.width,
               child: Center(
-                child: CircularProgressIndicator(
-                  backgroundColor: Colors.white,
-                  strokeWidth: 4,
+                child: CupertinoActivityIndicator(
+                  animating: true,
                 ),
               ),
             );
@@ -139,18 +138,18 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                       child: Container(
                         width: size.width,
                         height: size.height * 0.60,
-                        color: Colors.black.withOpacity(0.6),
+                        color: CupertinoColors.black.withOpacity(0.6),
                       )),
                   Positioned(
                     top: size.height * 0.06,
                     left: 0,
-                    child: IconButton(
-                        onPressed: () {
+                    child: GestureDetector(
+                        onTap: () {
                           Navigator.pop(context);
                         },
-                        icon: Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
+                        child: Icon(
+                          CupertinoIcons.chevron_back,
+                          color: CupertinoColors.white,
                           size: 32,
                         )),
                   ),
@@ -198,7 +197,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                                 Container(
                                   margin: EdgeInsets.only(left: 4, right: 4),
                                   child: Icon(
-                                    Icons.circle,
+                                    CupertinoIcons.circle,
                                     size: 8,
                                     color: Color(0xFFCDCED1),
                                   ),
@@ -210,7 +209,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                                 Container(
                                   margin: EdgeInsets.only(left: 4, right: 4),
                                   child: Icon(
-                                    Icons.circle,
+                                    CupertinoIcons.circle,
                                     size: 8,
                                     color: Color(0xFFCDCED1),
                                   ),
@@ -237,7 +236,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                       child: Container(
                         width: size.width,
                         height: size.height * 0.1,
-                        color: Colors.black.withOpacity(0.3),
+                        color: CupertinoColors.black.withOpacity(0.3),
                       )),
                 ],
               ),

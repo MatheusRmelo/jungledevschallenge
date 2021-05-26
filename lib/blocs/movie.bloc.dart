@@ -19,7 +19,6 @@ class MovieBloc {
   Future<void> getMovie(int id) async {
     var result = await _dioMovie.get("$id?api_key=$_apiKey&language=en-US");
     var movieData = result.data;
-    print(result.data);
     _movie = MovieModel(
         title: movieData["title"],
         overview: movieData["overview"],
